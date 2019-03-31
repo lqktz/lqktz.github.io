@@ -105,7 +105,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://raw.githubusercontent.com/lqktz/document/master/res/hidden_API.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/lqktz/document/master/res/Hidden_API_02.png">
-<meta property="og:updated_time" content="2019-03-31T07:52:15.423Z">
+<meta property="og:updated_time" content="2019-03-31T07:53:09.138Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
 <meta name="twitter:description" content="Android P 非SDK接口限制分析在Android P版本，为了以后的android大版本更好的升级，Google在P版本上对隐藏的Java API进行了一定的限制，后续版本会逐步的完善限制。app侧通过反射等方式调用的Java API将很难实现。这也是为了Android 生态在未来更好的发展。">
@@ -335,7 +335,7 @@
                 
               
 
-              <time title="Created: 2019-03-31 15:52:15" itemprop="dateCreated datePublished" datetime="2019-03-31T15:52:15+08:00">2019-03-31</time>
+              <time title="Created: 2019-03-31 15:53:09" itemprop="dateCreated datePublished" datetime="2019-03-31T15:53:09+08:00">2019-03-31</time>
             
 
             
@@ -370,7 +370,7 @@
       
 
       
-        <h1 id="Android-P-非SDK接口限制分析"><a href="#Android-P-非SDK接口限制分析" class="headerlink" title="Android P 非SDK接口限制分析"></a>Android P 非SDK接口限制分析</h1><p>在Android P版本，为了以后的android大版本更好的升级，Google在P版本上对隐藏的Java API进行了一定的限制，后续版本会逐步的完善限制。<br>app侧通过反射等方式调用的Java API将很难实现。这也是为了Android 生态在未来更好的发展。</p>
+        <h1 id="Android-P-非SDK接口限制分析"><a href="#Android-P-非SDK接口限制分析" class="headerlink" title="Android P 非SDK接口限制分析"></a>Android P 非SDK接口限制分析</h1><p>在Android P版本，为了以后的android大版本更好的升级，Google在P版本上对隐藏的Java API进行了一定的限制，后续版本会逐步的完善限制。app侧通过反射等方式调用的Java API将很难实现。这也是为了Android 生态在未来更好的发展。</p>
 <a id="more"></a>
 <p>涉及的源码路径</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">libcore/ojluni/src/main/java/java/lang/Class.java</span><br><span class="line">art/runtime/native/java_lang_Class.cc</span><br><span class="line">art/runtime/hidden_api.h</span><br><span class="line">art/runtime/runtime.h</span><br><span class="line">art/libdexfile/dex/hidden_api_access_flags.h</span><br><span class="line">art/runtime/hidden_api.cc</span><br><span class="line">art/runtime/art_method-inl.h</span><br></pre></td></tr></table></figure>
