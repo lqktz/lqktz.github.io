@@ -96,19 +96,20 @@
 
 
 
-  <meta name="description" content="title: Android P 非SDK接口限制分析date: 2019-03-31tags: [Android]categories: category Android P 非SDK接口限制分析在Android P版本，为了以后的android大版本更好的升级，Google在P版本上对隐藏的Java API进行了一定的限制，后续版本会逐步的完善限制。app侧通过反射等方式调用的Java API">
+  <meta name="description" content="在Android P版本，为了以后的android大版本更好的升级，Google在P版本上对隐藏的Java API进行了一定的限制，后续版本会逐步的完善限制。app侧通过反射等方式调用的Java API将很难实现。这也是为了Android 生态在未来更好的发展。">
+<meta name="keywords" content="Android,源码，Hide Java API">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Michael">
+<meta property="og:title" content="Android P 非SDK接口限制分析">
 <meta property="og:url" content="http://yoursite.com/2019/03/31/Android-P-非SDK接口限制分析/index.html">
 <meta property="og:site_name" content="Michael">
-<meta property="og:description" content="title: Android P 非SDK接口限制分析date: 2019-03-31tags: [Android]categories: category Android P 非SDK接口限制分析在Android P版本，为了以后的android大版本更好的升级，Google在P版本上对隐藏的Java API进行了一定的限制，后续版本会逐步的完善限制。app侧通过反射等方式调用的Java API">
+<meta property="og:description" content="在Android P版本，为了以后的android大版本更好的升级，Google在P版本上对隐藏的Java API进行了一定的限制，后续版本会逐步的完善限制。app侧通过反射等方式调用的Java API将很难实现。这也是为了Android 生态在未来更好的发展。">
 <meta property="og:locale" content="CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/lqktz/document/master/res/hidden_API.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/lqktz/document/master/res/Hidden_API_02.png">
-<meta property="og:updated_time" content="2019-03-31T08:02:57.306Z">
+<meta property="og:updated_time" content="2019-03-31T08:20:10.968Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Michael">
-<meta name="twitter:description" content="title: Android P 非SDK接口限制分析date: 2019-03-31tags: [Android]categories: category Android P 非SDK接口限制分析在Android P版本，为了以后的android大版本更好的升级，Google在P版本上对隐藏的Java API进行了一定的限制，后续版本会逐步的完善限制。app侧通过反射等方式调用的Java API">
+<meta name="twitter:title" content="Android P 非SDK接口限制分析">
+<meta name="twitter:description" content="在Android P版本，为了以后的android大版本更好的升级，Google在P版本上对隐藏的Java API进行了一定的限制，后续版本会逐步的完善限制。app侧通过反射等方式调用的Java API将很难实现。这也是为了Android 生态在未来更好的发展。">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/lqktz/document/master/res/hidden_API.png">
 
 
@@ -127,7 +128,7 @@
   };
 </script>
 
-  <title> | Michael</title>
+  <title>Android P 非SDK接口限制分析 | Michael</title>
   
 
 
@@ -243,6 +244,23 @@
     <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
 
   </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
 
       
       
@@ -287,7 +305,7 @@
 
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-Android" itemscope itemtype="http://schema.org/Article">
   
   
   
@@ -297,7 +315,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Michael">
       <meta itemprop="description" content="爱技术，爱生活">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/Michael.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -309,7 +327,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h1 class="post-title" itemprop="name headline">Android P 非SDK接口限制分析
 
               
             
@@ -335,12 +353,34 @@
                 
               
 
-              <time title="Created: 2019-03-31 16:02:57" itemprop="dateCreated datePublished" datetime="2019-03-31T16:02:57+08:00">2019-03-31</time>
+              <time title="Created: 2019-03-31 00:00:00 / Modified: 16:20:10" itemprop="dateCreated datePublished" datetime="2019-03-31T00:00:00+08:00">2019-03-31</time>
             
 
+            
+              
+
+              
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/category/" itemprop="url" rel="index"><span itemprop="name">category</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -370,8 +410,7 @@
       
 
       
-        <p>title: Android P 非SDK接口限制分析<br>date: 2019-03-31<br>tags: [Android]<br>categories: category</p>
-<h1 id="Android-P-非SDK接口限制分析"><a href="#Android-P-非SDK接口限制分析" class="headerlink" title="Android P 非SDK接口限制分析"></a>Android P 非SDK接口限制分析</h1><p>在Android P版本，为了以后的android大版本更好的升级，Google在P版本上对隐藏的Java API进行了一定的限制，后续版本会逐步的完善限制。app侧通过反射等方式调用的Java API将很难实现。这也是为了Android 生态在未来更好的发展。</p>
+        <p>在Android P版本，为了以后的android大版本更好的升级，Google在P版本上对隐藏的Java API进行了一定的限制，后续版本会逐步的完善限制。app侧通过反射等方式调用的Java API将很难实现。这也是为了Android 生态在未来更好的发展。</p>
 <a id="more"></a>
 <p>涉及的源码路径</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">libcore/ojluni/src/main/java/java/lang/Class.java</span><br><span class="line">art/runtime/native/java_lang_Class.cc</span><br><span class="line">art/runtime/hidden_api.h</span><br><span class="line">art/runtime/runtime.h</span><br><span class="line">art/libdexfile/dex/hidden_api_access_flags.h</span><br><span class="line">art/runtime/hidden_api.cc</span><br><span class="line">art/runtime/art_method-inl.h</span><br></pre></td></tr></table></figure>
@@ -475,6 +514,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/源码，Hide-Java-API/" rel="tag"># 源码，Hide Java API</a>
+          
+        </div>
+      
 
       
       
@@ -534,6 +581,8 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
+              <img class="site-author-image" itemprop="image" src="/images/Michael.jpeg" alt="Michael">
+            
               <p class="site-author-name" itemprop="name">Michael</p>
               <div class="site-description motion-element" itemprop="description">爱技术，爱生活</div>
           </div>
@@ -552,7 +601,35 @@
               
 
               
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
 
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
               
             </nav>
           
@@ -587,7 +664,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Android-P-非SDK接口限制分析"><span class="nav-number">1.</span> <span class="nav-text">Android P 非SDK接口限制分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-java-端调用"><span class="nav-number">1.1.</span> <span class="nav-text">1. java 端调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-C-端的实现"><span class="nav-number">1.2.</span> <span class="nav-text">2. C++ 端的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Class-getDeclaredMethodInternal"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 Class_getDeclaredMethodInternal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-ShouldBlockAccessToMember"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 ShouldBlockAccessToMember</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-GetMemberAction"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 GetMemberAction</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-1-GetHiddenApiAccessFlags"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">2.3.1 GetHiddenApiAccessFlags</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-GetActionFromAccessFlags"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">2.3.2 GetActionFromAccessFlags</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-IsCallerTrusted"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">2.3.2 IsCallerTrusted</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-3-GetMemberActionImpl"><span class="nav-number">1.2.3.4.</span> <span class="nav-text">2.3.3 GetMemberActionImpl</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">2.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-java-端调用"><span class="nav-number">1.</span> <span class="nav-text">1. java 端调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-C-端的实现"><span class="nav-number">2.</span> <span class="nav-text">2. C++ 端的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Class-getDeclaredMethodInternal"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 Class_getDeclaredMethodInternal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-ShouldBlockAccessToMember"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 ShouldBlockAccessToMember</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-GetMemberAction"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 GetMemberAction</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-1-GetHiddenApiAccessFlags"><span class="nav-number">2.3.1.</span> <span class="nav-text">2.3.1 GetHiddenApiAccessFlags</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-GetActionFromAccessFlags"><span class="nav-number">2.3.2.</span> <span class="nav-text">2.3.2 GetActionFromAccessFlags</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-IsCallerTrusted"><span class="nav-number">2.3.3.</span> <span class="nav-text">2.3.2 IsCallerTrusted</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-3-GetMemberActionImpl"><span class="nav-number">2.3.4.</span> <span class="nav-text">2.3.3 GetMemberActionImpl</span></a></li></ol></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number"></span> <span class="nav-text">参考资料</span></a></li></div>
             
 
           </div>
