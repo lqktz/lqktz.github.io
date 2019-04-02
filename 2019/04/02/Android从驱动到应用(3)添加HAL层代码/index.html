@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="在前面,我们添加里成功了驱动层的代码,下来接着添加HAL层的代码.让我们的用户空间的代码也能使用到添加的新的虚拟寄存器设备.">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android从驱动到应用(3)添加HAL层代码">
+<meta property="og:url" content="http://yoursite.com/2019/04/02/Android从驱动到应用(3)添加HAL层代码/index.html">
+<meta property="og:site_name" content="Michael&#39;s Home">
+<meta property="og:description" content="在前面,我们添加里成功了驱动层的代码,下来接着添加HAL层的代码.让我们的用户空间的代码也能使用到添加的新的虚拟寄存器设备.">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-02T15:24:01.837Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android从驱动到应用(3)添加HAL层代码">
+<meta name="twitter:description" content="在前面,我们添加里成功了驱动层的代码,下来接着添加HAL层的代码.让我们的用户空间的代码也能使用到添加的新的虚拟寄存器设备.">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/04/02/Android从驱动到应用(3)添加HAL层代码/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Android从驱动到应用(3)添加HAL层代码 | Michael's Home</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Michael's Home</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Android | Tensorflow</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-Android" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/02/Android从驱动到应用(3)添加HAL层代码/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Michael">
+      <meta itemprop="description" content="爱技术，爱生活">
+      <meta itemprop="image" content="/images/Michael.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Michael's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android从驱动到应用(3)添加HAL层代码
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-02 00:00:00 / Modified: 23:24:01" itemprop="dateCreated datePublished" datetime="2019-04-02T00:00:00+08:00">2019-04-02</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/android/" itemprop="url" rel="index"><span itemprop="name">android</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在前面,我们添加里成功了驱动层的代码,下来接着添加HAL层的代码.让我们的用户空间的代码也能使用到添加的新的虚拟寄存器设备.</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hardware</span><br><span class="line">    ----libhardware/include/hardware/freg.h</span><br><span class="line">    ----libhardware/modules/freg</span><br><span class="line">        |---freg.cpp</span><br><span class="line">        |---Android.mk</span><br></pre></td></tr></table></figure>
+<p>freg.h:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">#ifndef ANDROID_FREG_INTERFACE_H</span><br><span class="line">#define ANDROID_FREG_INTERFACE_H</span><br><span class="line"></span><br><span class="line">#include &lt;hardware/hardware.h&gt;</span><br><span class="line"></span><br><span class="line">__BEGIN_DECLS</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * The id of this module</span><br><span class="line"> */</span><br><span class="line">#define FREG_HARDWARE_MODULE_ID &quot;freg&quot;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * The id of this device</span><br><span class="line"> */</span><br><span class="line">#define FREG_HARDWARE_DEVICE_ID &quot;freg&quot;</span><br><span class="line"></span><br><span class="line">struct freg_module_t &#123;</span><br><span class="line">        struct hw_module_t common;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">struct freg_device_t &#123;</span><br><span class="line">        struct hw_device_t common;</span><br><span class="line">        int fd;</span><br><span class="line">        int (*set_val)(struct freg_device_t* dev, int val);</span><br><span class="line">        int (*get_val)(struct freg_device_t* dev, int* val);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">__END_DECLS</span><br><span class="line"></span><br><span class="line">#endif</span><br></pre></td></tr></table></figure></p>
+<p>freg.h按照android对HAL层规范的要求，分别定义模块ID、模块结构体以及硬件接口结构体.</p>
+<p>freg.h:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line">#define LOG_TAG &quot;FregHALStub&quot;</span><br><span class="line"></span><br><span class="line">#include &lt;hardware/hardware.h&gt;</span><br><span class="line">#include &lt;hardware/freg.h&gt;</span><br><span class="line"></span><br><span class="line">#include &lt;fcntl.h&gt;</span><br><span class="line">#include &lt;errno.h&gt;</span><br><span class="line"></span><br><span class="line">#include &lt;cutils/log.h&gt;</span><br><span class="line">#include &lt;cutils/atomic.h&gt;</span><br><span class="line"></span><br><span class="line">#include &lt;malloc.h&gt;</span><br><span class="line">#include &lt;stdint.h&gt;</span><br><span class="line">#include &lt;sys/time.h&gt;</span><br><span class="line"></span><br><span class="line">#include &lt;hardware/hardware.h&gt;</span><br><span class="line">#include &lt;system/audio.h&gt;</span><br><span class="line">#include &lt;hardware/audio.h&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#define DEVICE_NAME &quot;/dev/freg&quot;</span><br><span class="line">#define MODULE_NAME &quot;Freg&quot;</span><br><span class="line">#define MODULE_AUTHOR &quot;shyluo@gmail.com&quot;</span><br><span class="line"></span><br><span class="line">static int freg_device_open(const struct hw_module_t* module, const char* id, struct hw_device_t** device);</span><br><span class="line">static int freg_device_close(struct hw_device_t* device);</span><br><span class="line">static int freg_set_val(struct freg_device_t* dev, int val);</span><br><span class="line">static int freg_get_val(struct freg_device_t* dev, int* val);</span><br><span class="line"></span><br><span class="line">static struct hw_module_methods_t freg_module_methods = &#123;</span><br><span class="line">        open: freg_device_open</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">struct freg_module_t HAL_MODULE_INFO_SYM = &#123;</span><br><span class="line">        common: &#123;</span><br><span class="line">                tag: HARDWARE_MODULE_TAG,</span><br><span class="line">                version_major: 1,</span><br><span class="line">                version_minor: 0,</span><br><span class="line">                id: FREG_HARDWARE_MODULE_ID,</span><br><span class="line">                name: MODULE_NAME,</span><br><span class="line">                author: MODULE_AUTHOR,</span><br><span class="line">                methods: &amp;freg_module_methods,</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">static int freg_device_open(const struct hw_module_t* module, const char* id, struct hw_device_t** device) &#123;</span><br><span class="line">        if(!strcmp(id, FREG_HARDWARE_DEVICE_ID)) &#123;</span><br><span class="line">                struct freg_device_t* dev;</span><br><span class="line"></span><br><span class="line">                dev = (struct freg_device_t*)malloc(sizeof(struct freg_device_t));</span><br><span class="line">                if(!dev) &#123;</span><br><span class="line">                        ALOGE(&quot;Failed to alloc space for freg_device_t.&quot;);</span><br><span class="line">                        return -EFAULT;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                memset(dev, 0, sizeof(struct freg_device_t));</span><br><span class="line"></span><br><span class="line">                dev-&gt;common.tag = HARDWARE_DEVICE_TAG;</span><br><span class="line">                dev-&gt;common.version = 0;</span><br><span class="line">                dev-&gt;common.module = (hw_module_t*)module;</span><br><span class="line">                dev-&gt;common.close = freg_device_close;</span><br><span class="line">                dev-&gt;set_val = freg_set_val;</span><br><span class="line">                dev-&gt;get_val = freg_get_val;</span><br><span class="line"></span><br><span class="line">                if((dev-&gt;fd = open(DEVICE_NAME, O_RDWR)) == -1) &#123;</span><br><span class="line">                        ALOGE(&quot;Failed to open device file /dev/freg -- %s.&quot;, strerror(errno));</span><br><span class="line">                        free(dev);</span><br><span class="line">                        return -EFAULT;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                *device = &amp;(dev-&gt;common);</span><br><span class="line"></span><br><span class="line">                ALOGI(&quot;Open device file /dev/freg successfully.&quot;);</span><br><span class="line"></span><br><span class="line">                return 0;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return -EFAULT;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">static int freg_device_close(struct hw_device_t* device) &#123;</span><br><span class="line">        struct freg_device_t* freg_device = (struct freg_device_t*)device;</span><br><span class="line">        if(freg_device) &#123;</span><br><span class="line">                close(freg_device-&gt;fd);</span><br><span class="line">                free(freg_device);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">static int freg_set_val(struct freg_device_t* dev, int val) &#123;</span><br><span class="line">        if(!dev) &#123;</span><br><span class="line">                ALOGE(&quot;Null dev pointer.&quot;);</span><br><span class="line">                return -EFAULT;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ALOGI(&quot;Set value %d to device file /dev/freg.&quot;, val);</span><br><span class="line">        write(dev-&gt;fd, &amp;val, sizeof(val));</span><br><span class="line"></span><br><span class="line">        return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">static int freg_get_val(struct freg_device_t* dev, int* val) &#123;</span><br><span class="line">        if(!dev) &#123;</span><br><span class="line">                ALOGE(&quot;Null dev pointer.&quot;);</span><br><span class="line">                return -EFAULT;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if(!val) &#123;</span><br><span class="line">                ALOGE(&quot;Null val pointer.&quot;);</span><br><span class="line">                return -EFAULT;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        read(dev-&gt;fd, val, sizeof(*val));</span><br><span class="line"></span><br><span class="line">        ALOGI(&quot;Get value %d from device file /dev/freg.&quot;, *val);</span><br><span class="line"></span><br><span class="line">        return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>freg.cpp相对罗大神blog的修改是include文件,由于free函数和malloc方法的头文件有变化,还有log系统,LOGE-&gt;ALOGE,LOGI-&gt;ALOGI.这两个改动是依据代码编译报错修改而来.  </p>
+<p>Android.mk:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">LOCAL_PATH := $(call my-dir)</span><br><span class="line">include $(CLEAR_VARS)</span><br><span class="line">LOCAL_MODULE_TAGS := optional</span><br><span class="line">LOCAL_PRELINK_MODULE := false</span><br><span class="line">LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/hw</span><br><span class="line">LOCAL_SHARED_LIBRARIES := liblog</span><br><span class="line">LOCAL_SRC_FILES := freg.cpp</span><br><span class="line">LOCAL_MODULE := freg.default</span><br><span class="line">include $(BUILD_SHARED_LIBRARY)</span><br></pre></td></tr></table></figure></p>
+<p>编译该模块:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mmm hardware/libhardware/modules/freg</span><br></pre></td></tr></table></figure></p>
+<p>这样就会在<code>out/target/product/generic/system/lib/hw</code>目录下看到freg.default.so文件.<br>打包system image :<code>make snod</code><br>HAL层书写完毕.</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/02/Android从驱动到应用(4)添加JNI层/" rel="next" title="Android从驱动到应用(4)添加JNI层">
+                <i class="fa fa-chevron-left"></i> Android从驱动到应用(4)添加JNI层
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/02/Android从驱动到应用(2)测试freg驱动的功能内置C程程序/" rel="prev" title="Android从驱动到应用(2)测试freg驱动的功能内置C程程序">
+                Android从驱动到应用(2)测试freg驱动的功能内置C程程序 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/Michael.jpeg" alt="Michael">
+            
+              <p class="site-author-name" itemprop="name">Michael</p>
+              <div class="site-description motion-element" itemprop="description">爱技术，爱生活</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Michael</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
