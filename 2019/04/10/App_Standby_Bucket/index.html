@@ -96,20 +96,20 @@
 
 
 
-  <meta name="description" content="简介在Android P 中针对电源管理,添加了应用分组功能.依据应用使用的频率和最近一次使用时间，对其资源请求进行优先级排序。应用待机分组一共有五个分组，系统会根据每个应用的使用情况，将其划分至五个优先分组中的一个，而每个分组对设备资源的调度各有不同的限制。 1 优先分组系统动态的分配应用到不同的组,在不同的组会有不同的限制.应用活跃度越高，所处分组的优先级就越高，也就相应地更容易获取设备资源。">
+  <meta name="description" content="简介在Android P 中针对电源管理,添加了应用分组功能.依据应用使用的频率和最近一次使用时间，对其资源请求进行优先级排序。应用待机分组一共有五个分组，系统会根据每个应用的使用情况，将其划分至五个优先分组中的一个，而每个分组对设备资源的调度各有不同的限制。">
 <meta name="keywords" content="Android,Android P">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android P 应用分组介绍">
 <meta property="og:url" content="http://yoursite.com/2019/04/10/App_Standby_Bucket/index.html">
 <meta property="og:site_name" content="Michael&#39;s Home">
-<meta property="og:description" content="简介在Android P 中针对电源管理,添加了应用分组功能.依据应用使用的频率和最近一次使用时间，对其资源请求进行优先级排序。应用待机分组一共有五个分组，系统会根据每个应用的使用情况，将其划分至五个优先分组中的一个，而每个分组对设备资源的调度各有不同的限制。 1 优先分组系统动态的分配应用到不同的组,在不同的组会有不同的限制.应用活跃度越高，所处分组的优先级就越高，也就相应地更容易获取设备资源。">
+<meta property="og:description" content="简介在Android P 中针对电源管理,添加了应用分组功能.依据应用使用的频率和最近一次使用时间，对其资源请求进行优先级排序。应用待机分组一共有五个分组，系统会根据每个应用的使用情况，将其划分至五个优先分组中的一个，而每个分组对设备资源的调度各有不同的限制。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://raw.githubusercontent.com/lqktz/document/master/res/app_standby_bucket_001.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/lqktz/document/master/res/getAppStandbyBucket.png">
-<meta property="og:updated_time" content="2019-04-10T13:30:46.416Z">
+<meta property="og:updated_time" content="2019-04-10T13:51:56.829Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android P 应用分组介绍">
-<meta name="twitter:description" content="简介在Android P 中针对电源管理,添加了应用分组功能.依据应用使用的频率和最近一次使用时间，对其资源请求进行优先级排序。应用待机分组一共有五个分组，系统会根据每个应用的使用情况，将其划分至五个优先分组中的一个，而每个分组对设备资源的调度各有不同的限制。 1 优先分组系统动态的分配应用到不同的组,在不同的组会有不同的限制.应用活跃度越高，所处分组的优先级就越高，也就相应地更容易获取设备资源。">
+<meta name="twitter:description" content="简介在Android P 中针对电源管理,添加了应用分组功能.依据应用使用的频率和最近一次使用时间，对其资源请求进行优先级排序。应用待机分组一共有五个分组，系统会根据每个应用的使用情况，将其划分至五个优先分组中的一个，而每个分组对设备资源的调度各有不同的限制。">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/lqktz/document/master/res/app_standby_bucket_001.png">
 
 
@@ -357,7 +357,7 @@
                 
               
 
-              <time title="Created: 2019-04-10 00:00:00 / Modified: 21:30:46" itemprop="dateCreated datePublished" datetime="2019-04-10T00:00:00+08:00">2019-04-10</time>
+              <time title="Created: 2019-04-10 00:00:00 / Modified: 21:51:56" itemprop="dateCreated datePublished" datetime="2019-04-10T00:00:00+08:00">2019-04-10</time>
             
 
             
@@ -414,7 +414,7 @@
       
 
       
-        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在Android P 中针对电源管理,添加了应用分组功能.依据应用使用的频率和最近一次使用时间，对其资源请求进行优先级排序。<br>应用待机分组一共有五个分组，系统会根据每个应用的使用情况，将其划分至五个优先分组中的一个，而每个分组对设备资源<br>的调度各有不同的限制。</p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在Android P 中针对电源管理,添加了应用分组功能.依据应用使用的频率和最近一次使用时间，对其资源请求进行优先级排序。<br>应用待机分组一共有五个分组，系统会根据每个应用的使用情况，将其划分至五个优先分组中的一个，而每个分组对设备资源<br>的调度各有不同的限制。<br><a id="more"></a></p>
 <h2 id="1-优先分组"><a href="#1-优先分组" class="headerlink" title="1 优先分组"></a>1 优先分组</h2><p>系统动态的分配应用到不同的组,在不同的组会有不同的限制.应用活跃度越高，所处分组的优先级就越高，也就相应地更容易<br>获取设备资源。尤其是，应用所处的的群组决定了其所安排的任务 (job)，触发标准闹铃以及接受高优先级Firebase Cloud<br>Messagesing信息的频率。这些限制只有在非充电状态才有效(adb shell dumpsys battery unplug),在跑Monkey时,也不会影响<br>动态的分组,在充电状态下应用的行为不会受到限制.</p>
 <p>至于如何分组,要看手机厂商制定什么规则,默认的规则是根据应用的近期使用情况进行等级划分。厂商也可以使用机器学习对<br>应用的使用情况进行预测,将应用放在不同优先级的组.</p>
 <h3 id="1-1-组的介绍"><a href="#1-1-组的介绍" class="headerlink" title="1.1 组的介绍"></a>1.1 组的介绍</h3><p>在<a href="https://developer.android.google.cn/topic/performance/power/power-details" target="_blank" rel="noopener">Power management restrictions</a>中,<br>对不同的组有相关的介绍.</p>
@@ -630,8 +630,8 @@ packageName, userId, elapsedRealtime, mAppStandbyScreenThresholds, mAppStandbyEl
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/02/Android从驱动到应用(2)测试freg驱动的功能内置C程程序/" rel="next" title="Android从驱动到应用(2)测试freg驱动的功能内置C程程序">
-                <i class="fa fa-chevron-left"></i> Android从驱动到应用(2)测试freg驱动的功能内置C程程序
+              <a href="/2019/04/10/Android-O-耗电统计/" rel="next" title="Android O电量统计">
+                <i class="fa fa-chevron-left"></i> Android O电量统计
               </a>
             
           </div>
@@ -639,6 +639,10 @@ packageName, userId, elapsedRealtime, mAppStandbyScreenThresholds, mAppStandbyEl
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/10/PKMS扫描安装包源码分析/" rel="prev" title="PackageManagerService 源码扫描安装包分析">
+                PackageManagerService 源码扫描安装包分析 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -709,7 +713,7 @@ packageName, userId, elapsedRealtime, mAppStandbyScreenThresholds, mAppStandbyEl
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

@@ -96,17 +96,18 @@
 
 
 
-  <meta name="description" content="爱技术，爱生活">
-<meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+  <meta name="description" content="启动环节 启动电源以及系统启动当电源按下，引导芯片代码开始从预定义的地方（固化在ROM）开始执行。加载引导程序到RAM，然后执行.   引导程序Bootloader引导程序是在Android操作系统开始运行前的一个小程序，它的主要作用是把系统OS拉起来并运行。   linux内核启动内核启动时，设置缓存、被保护存储器、计划列表，加载驱动。当内核完成系统设置，它首先在系统文件中寻找”init”文件">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android开机总体流程">
+<meta property="og:url" content="http://yoursite.com/2019/04/10/androidstart/index.html">
 <meta property="og:site_name" content="Michael&#39;s Home">
-<meta property="og:description" content="爱技术，爱生活">
+<meta property="og:description" content="启动环节 启动电源以及系统启动当电源按下，引导芯片代码开始从预定义的地方（固化在ROM）开始执行。加载引导程序到RAM，然后执行.   引导程序Bootloader引导程序是在Android操作系统开始运行前的一个小程序，它的主要作用是把系统OS拉起来并运行。   linux内核启动内核启动时，设置缓存、被保护存储器、计划列表，加载驱动。当内核完成系统设置，它首先在系统文件中寻找”init”文件">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-31T11:42:09.274Z">
+<meta property="og:updated_time" content="2019-04-10T13:53:32.740Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="categories">
-<meta name="twitter:description" content="爱技术，爱生活">
+<meta name="twitter:title" content="Android开机总体流程">
+<meta name="twitter:description" content="启动环节 启动电源以及系统启动当电源按下，引导芯片代码开始从预定义的地方（固化在ROM）开始执行。加载引导程序到RAM，然后执行.   引导程序Bootloader引导程序是在Android操作系统开始运行前的一个小程序，它的主要作用是把系统OS拉起来并运行。   linux内核启动内核启动时，设置缓存、被保护存储器、计划列表，加载驱动。当内核完成系统设置，它首先在系统文件中寻找”init”文件">
 
 
 
@@ -114,7 +115,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/categories/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/10/androidstart/">
 
 
 
@@ -124,7 +125,7 @@
   };
 </script>
 
-  <title>categories | Michael's Home</title>
+  <title>Android开机总体流程 | Michael's Home</title>
   
 
 
@@ -270,22 +271,6 @@
   
     
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
   
 
   
@@ -312,45 +297,194 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-Android" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/10/androidstart/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Michael">
+      <meta itemprop="description" content="爱技术，爱生活">
+      <meta itemprop="image" content="/images/Michael.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Michael's Home">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">categories
-
-</h1>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
+          <h1 class="post-title" itemprop="name headline">Android开机总体流程
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-04-10 00:00:00 / Modified: 21:53:32" itemprop="dateCreated datePublished" datetime="2019-04-10T00:00:00+08:00">2019-04-10</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
           
-        
-      </div>
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/android/" itemprop="url" rel="index"><span itemprop="name">android</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <a id="more"></a>
+<h2 id="启动环节"><a href="#启动环节" class="headerlink" title="启动环节"></a>启动环节</h2><ol>
+<li><strong>启动电源以及系统启动</strong><br>当电源按下，引导芯片代码开始从预定义的地方（固化在ROM）开始执行。加载引导程序到RAM，然后执行.  </li>
+<li><strong>引导程序Bootloader</strong><br>引导程序是在Android操作系统开始运行前的一个小程序，它的主要作用是把系统OS拉起来并运行。  </li>
+<li><strong>linux内核启动</strong><br>内核启动时，设置缓存、被保护存储器、计划列表，加载驱动。当内核完成系统设置，它首先在系统文件中寻找”init”文件，然后启动root进程或者系统的第一个进程。  </li>
+<li><strong>init进程启动</strong><br>Anroid系统的”天字号”进程–init进程,准确的说init进程是Linux系统的用户空间的第一个进程,所以init进程也是<br>android系统用户空间的第一个进程.</li>
+<li><strong>Zygote进程启动</strong><br>init进程,那么Zygote进程就是二号进程,android启动之后的所有进程都是Zygote进程fork()出来的,Zygote进程是由<br>init进程启动起来的.  </li>
+<li><strong>system_server进程启动</strong><br>system_server进程其实是systemserver进程,只是在代码中把进程的名字修改了一下(为什么要修改?不知道…),该进程负责启动系统中重量级的服务,例如:<br>ActivityManagerService,PackageManagerService.etc,system_server进程是Zygote进程的嫡长子,Zygote最重视该进程,其他进程crash,Zygote进程只是打印信息,system_server进程<br>crash,Zygote进程会调用方法kill自己.android会重启…</li>
+<li><strong>系统服务启动</strong><br>这些系统服务都还是在system_server进程中</li>
+</ol>
+
       
     </div>
-    
-
-
 
     
+
     
     
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/10/zygote启动/" rel="next" title="Zygote进程启动过程">
+                <i class="fa fa-chevron-left"></i> Zygote进程启动过程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/10/init进程启动源码分析/" rel="prev" title="init启动分析">
+                init启动分析 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
@@ -379,8 +513,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -466,6 +609,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#启动环节"><span class="nav-number">1.</span> <span class="nav-text">启动环节</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
