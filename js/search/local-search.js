@@ -1,49 +1,29 @@
 $(function () {
   var loadFlag = false
   $('a.social-icon.search').on('click', function () {
-    $('body').css('width', '100%')
-    $('body').css('overflow', 'hidden')
+    $('body').css('width', '100%');
+    $('body').css('overflow-y', 'scroll');
+    $('body').css('position', 'fixed');
     $('.search-dialog').velocity('stop')
-      .velocity('transition.expandIn', {
-        duration: 300,
-        complete: function () {
-          $('#local-search-input input').focus()
-        }
-      })
+      .velocity('transition.expandIn', { duration: 300 })
     $('.search-mask').velocity('stop')
-      .velocity('transition.fadeIn', {
-        duration: 300
-      })
+      .velocity('transition.fadeIn', { duration: 300 })
     if (!loadFlag) {
-      search(GLOBAL_CONFIG.localSearch.path)
+      search(GLOBAL.localSearch.path)
       loadFlag = true
     }
-
-    // shortcut: ESC
-    document.addEventListener('keydown', function f(event) {
-      if (event.code === 'Escape') {
-        closeSearch()
-        document.removeEventListener('keydown', f)
-      }
-    })
+  })
+  $('.search-mask, .search-close-button').on('click', function () {
+    $('body').css('position', 'absolute');
+    $('.search-dialog').velocity('stop')
+      .velocity('transition.expandOut', { duration: 300 })
+    $('.search-mask').velocity('stop')
+      .velocity('transition.fadeOut', { duration: 300 })
   })
 
-  var closeSearch = function () {
-    $('body').css('overflow', 'auto')
-    $('.search-dialog').velocity('stop')
-      .velocity('transition.expandOut', {
-        duration: 300
-      })
-    $('.search-mask').velocity('stop')
-      .velocity('transition.fadeOut', {
-        duration: 300
-      })
-  }
-  $('.search-mask, .search-close-button').on('click', closeSearch)
-
-  function search(path) {
+  function search (path) {
     $.ajax({
-      url: GLOBAL_CONFIG.root + path,
+      url: '/' + path,
       dataType: 'xml',
       success: function (xmlResponse) {
         // get the contents from search data
@@ -89,13 +69,13 @@ $(function () {
             }
             // show search results
             if (isMatch) {
-              str += '<div class="local-search__hit-item"><a href="' + dataUrl + '" class="search-result-title">' + dataTitle + '</a>' + '</div>'
+              str += '<div class="local-search__hit-item"><a href="' + dataUrl + '" class="search-result-title" target="_blank">' + dataTitle + '</a>' + '</div>'
               count += 1
               $('.local-search-stats__hr').show()
             }
           })
           if (count === 0) {
-            str += '<div id="local-search__hits-empty">' + GLOBAL_CONFIG.localSearch.languages.hits_empty.replace(/\$\{query}/, this.value.trim()) +
+            str += '<div id="local-search__hits-empty">' + GLOBAL.localSearch.labels.hits_empty.replace(/\$\{query}/, this.value.trim()) +
               '</div>'
           }
           $resultContent.innerHTML = str

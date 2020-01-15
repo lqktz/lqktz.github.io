@@ -1,44 +1,18 @@
 $(function () {
   $('a.social-icon.search').on('click', function () {
-    $('body').css('width', '100%')
-    $('body').css('overflow', 'hidden')
     $('.search-dialog').velocity('stop')
-      .velocity('transition.expandIn', {
-        duration: 300,
-        complete: function () {
-          $('.ais-search-box--input').focus()
-        }
-      })
+      .velocity('transition.expandIn', { duration: 300 })
     $('.search-mask').velocity('stop')
-      .velocity('transition.fadeIn', {
-        duration: 300
-      })
-
-    // shortcut: ESC
-    document.addEventListener('keydown', function f(event) {
-      if (event.code == "Escape") {
-        closeSearch();
-        document.removeEventListener('keydown', f);
-      }
-    })
+      .velocity('transition.fadeIn', { duration: 300 })
+  })
+  $('.search-mask, .search-close-button').on('click', function () {
+    $('.search-dialog').velocity('stop')
+      .velocity('transition.expandOut', { duration: 300 })
+    $('.search-mask').velocity('stop')
+      .velocity('transition.fadeOut', { duration: 300 })
   })
 
-  var closeSearch = function () {
-    $('body').css('overflow', 'auto')
-    $('.search-dialog').velocity('stop')
-      .velocity('transition.expandOut', {
-        duration: 300
-      })
-    $('.search-mask').velocity('stop')
-      .velocity('transition.fadeOut', {
-        duration: 300
-      })
-  }
-  $('.search-mask, .search-close-button').on('click', closeSearch)
-
-
-
-  var algolia = GLOBAL_CONFIG.algolia
+  var algolia = GLOBAL.algolia
   var isAlgoliaValid = algolia.appId && algolia.apiKey && algolia.indexName
   if (!isAlgoliaValid) {
     return console.error('Algolia setting is invalid!')
@@ -65,7 +39,7 @@ $(function () {
       container: '#algolia-search-input',
       reset: false,
       magnifier: false,
-      placeholder: GLOBAL_CONFIG.algolia.languages.input_placeholder
+      placeholder: algolia.labels.input_placeholder
     })
   )
   search.addWidget(
@@ -73,7 +47,7 @@ $(function () {
       container: '#algolia-hits',
       templates: {
         item: function (data) {
-          var link = data.permalink ? data.permalink : (GLOBAL_CONFIG.root + data.path)
+          var link = data.permalink ? data.permalink : (GLOBAL.root + data.path)
           return (
             '<a href="' + link + '" class="algolia-hit-item-link">' +
             data._highlightResult.title.value +
@@ -83,7 +57,7 @@ $(function () {
         empty: function (data) {
           return (
             '<div id="algolia-hits-empty">' +
-            GLOBAL_CONFIG.algolia.languages.hits_empty.replace(/\$\{query}/, data.query) +
+            algolia.labels.hits_empty.replace(/\$\{query}/, data.query) +
             '</div>'
           )
         }
@@ -99,14 +73,14 @@ $(function () {
       container: '#algolia-stats',
       templates: {
         body: function (data) {
-          var stats = GLOBAL_CONFIG.algolia.languages.hits_stats
+          var stats = algolia.labels.hits_stats
             .replace(/\$\{hits}/, data.nbHits)
             .replace(/\$\{time}/, data.processingTimeMS)
           return (
             '<hr>' +
             stats +
             '<span class="algolia-logo pull-right">' +
-            '  <img src="' + GLOBAL_CONFIG.root + 'img/algolia.svg" alt="Algolia" />' +
+            '  <img src="' + GLOBAL.root + 'img/algolia.svg" alt="Algolia" />' +
             '</span>'
           )
         }
