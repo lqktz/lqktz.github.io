@@ -327,7 +327,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/02/Android从驱动到应用(2)测试freg驱动的功能内置C程程序/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/02/Android从驱动到应用(4)添加JNI层/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Michael">
@@ -347,7 +347,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/04/02/Android从驱动到应用(2)测试freg驱动的功能内置C程程序/" class="post-title-link" itemprop="url">Android从驱动到应用(2)测试freg驱动的功能内置C程程序</a>
+                <a href="/2019/04/02/Android从驱动到应用(4)添加JNI层/" class="post-title-link" itemprop="url">Android从驱动到应用(4)添加JNI层</a>
               
             
           </h1>
@@ -372,7 +372,7 @@
                 
               
 
-              <time title="创建时间：2019-04-02 00:00:00 / 修改时间：23:22:10" itemprop="dateCreated datePublished" datetime="2019-04-02T00:00:00+08:00">2019-04-02</time>
+              <time title="创建时间：2019-04-02 00:00:00 / 修改时间：23:25:41" itemprop="dateCreated datePublished" datetime="2019-04-02T00:00:00+08:00">2019-04-02</time>
             
 
             
@@ -430,11 +430,11 @@
 
       
         
-          <p>在上一节驱动程序已经添加,可是还不知道该驱动程序是否可以正常工作,用该节的代码来验证一下.</p>
+          <p>为了使用java代码调用c代码.需要实现对应的JNI方法.本文实现JNI部分。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/04/02/Android从驱动到应用(2)测试freg驱动的功能内置C程程序/#more" rel="contents">
+              <a class="btn" href="/2019/04/02/Android从驱动到应用(4)添加JNI层/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -602,6 +602,173 @@
           
             <div class="post-button text-center">
               <a class="btn" href="/2019/04/02/Android从驱动到应用(1)添加驱动/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-Android" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/02/Android从驱动到应用(3)添加HAL层代码/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Michael">
+      <meta itemprop="description" content="Android">
+      <meta itemprop="image" content="/images/Michael.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Michael's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/02/Android从驱动到应用(3)添加HAL层代码/" class="post-title-link" itemprop="url">Android从驱动到应用(3)添加HAL层代码</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-02 00:00:00 / 修改时间：23:24:01" itemprop="dateCreated datePublished" datetime="2019-04-02T00:00:00+08:00">2019-04-02</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/android/" itemprop="url" rel="index"><span itemprop="name">android</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>在前面,我们添加里成功了驱动层的代码,下来接着添加HAL层的代码.让我们的用户空间的代码也能使用到添加的新的虚拟寄存器设备.</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/02/Android从驱动到应用(3)添加HAL层代码/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -840,7 +1007,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/02/Android从驱动到应用(4)添加JNI层/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/02/Android从驱动到应用(2)测试freg驱动的功能内置C程程序/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Michael">
@@ -860,7 +1027,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/04/02/Android从驱动到应用(4)添加JNI层/" class="post-title-link" itemprop="url">Android从驱动到应用(4)添加JNI层</a>
+                <a href="/2019/04/02/Android从驱动到应用(2)测试freg驱动的功能内置C程程序/" class="post-title-link" itemprop="url">Android从驱动到应用(2)测试freg驱动的功能内置C程程序</a>
               
             
           </h1>
@@ -885,7 +1052,7 @@
                 
               
 
-              <time title="创建时间：2019-04-02 00:00:00 / 修改时间：23:25:41" itemprop="dateCreated datePublished" datetime="2019-04-02T00:00:00+08:00">2019-04-02</time>
+              <time title="创建时间：2019-04-02 00:00:00 / 修改时间：23:22:10" itemprop="dateCreated datePublished" datetime="2019-04-02T00:00:00+08:00">2019-04-02</time>
             
 
             
@@ -943,178 +1110,11 @@
 
       
         
-          <p>为了使用java代码调用c代码.需要实现对应的JNI方法.本文实现JNI部分。</p>
+          <p>在上一节驱动程序已经添加,可是还不知道该驱动程序是否可以正常工作,用该节的代码来验证一下.</p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/04/02/Android从驱动到应用(4)添加JNI层/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-Android" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/02/Android从驱动到应用(3)添加HAL层代码/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Michael">
-      <meta itemprop="description" content="Android">
-      <meta itemprop="image" content="/images/Michael.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Michael's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/02/Android从驱动到应用(3)添加HAL层代码/" class="post-title-link" itemprop="url">Android从驱动到应用(3)添加HAL层代码</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-02 00:00:00 / 修改时间：23:24:01" itemprop="dateCreated datePublished" datetime="2019-04-02T00:00:00+08:00">2019-04-02</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/android/" itemprop="url" rel="index"><span itemprop="name">android</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>在前面,我们添加里成功了驱动层的代码,下来接着添加HAL层的代码.让我们的用户空间的代码也能使用到添加的新的虚拟寄存器设备.</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/04/02/Android从驱动到应用(3)添加HAL层代码/#more" rel="contents">
+              <a class="btn" href="/2019/04/02/Android从驱动到应用(2)测试freg驱动的功能内置C程程序/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1645,7 +1645,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
