@@ -94,7 +94,7 @@ hr {
   position: relative;
   margin: 2rem auto;
   width: calc(100% - 4px);
-  border: 2px dashed #a4d8fa;
+  border: 2px dashed #575757;
   background: #fff;
 }
 hr:hover:before {
@@ -898,7 +898,7 @@ footer.is-mobile {
 }
 .article-sort {
   padding-left: 1rem;
-  border-left: 2px solid #a4d8fa;
+  border-left: 2px solid #575757;
 }
 .article-sort-title {
   position: relative;
@@ -935,7 +935,7 @@ footer.is-mobile {
   z-index: 0;
   width: 0.1rem;
   height: 1.3rem;
-  background: #a4d8fa;
+  background: #575757;
   content: "";
 }
 .article-sort-item {
@@ -1038,7 +1038,7 @@ footer.is-mobile {
   width: 100%;
   height: 1.5rem;
   background: rgba(0,0,0,0.5);
-  color: #a4d8fa;
+  color: #575757;
   text-align: center;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
