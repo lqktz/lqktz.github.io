@@ -19,8 +19,7 @@
 <p>这四种方式在代码里的实现其实就是如下两种：  </p>
 <ul>
 <li>PMS调用scanDirLI扫描安装(本文分析的方式)  </li>
-<li>直接或间接调用installPackageAsUser安装  <a id="more"></a>
-</li>
+<li>直接或间接调用installPackageAsUser安装  </li>
 </ul>
 <hr>
 <p>在systemserver的分析过程中,在startBootstrapServices()中启动PMS是通过调用PackageManagerService.main()启动了PMS服务的,本文接着从这开始分析.<br><code>frameworks/base/services/core/java/com/android/server/pm/PackageManagerService.java</code><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public static PackageManagerService main(Context context, Installer installer,</span><br><span class="line">        boolean factoryTest, boolean onlyCore) &#123;</span><br><span class="line">    // Self-check for initial settings.</span><br><span class="line">    PackageManagerServiceCompilerMapping.checkProperties();</span><br><span class="line"></span><br><span class="line">    PackageManagerService m = new PackageManagerService(context, installer,</span><br><span class="line">            factoryTest, onlyCore);</span><br><span class="line">    m.enableSystemUserPackages();</span><br><span class="line">    ServiceManager.addService(&quot;package&quot;, m);</span><br><span class="line">    return m;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
