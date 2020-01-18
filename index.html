@@ -22,13 +22,12 @@ YouTube |        |--YouTu ...</div><a class="more" href="/2019/05/26/vdex/#more"
 硬件电量计算:BatteryStatsHelper类中的processMiscUsage()方法  
 
 
-fra ...</div><a class="more" href="/2019/04/10/Android-O-耗电统计/#more" style="margin-top: 14px">阅读更多</a><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2019/04/10/init进程启动源码分析/">init启动分析</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-04-10</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Android/">Android</a></span><div class="content"><p><strong>Android N平台</strong></p>
-<hr>
-<p>涉及源码位置:<br>aosp/system/core/init/init.cpp<br>aosp/system/core/rootdir/init.rc<br>aosp/system/core/init/property_service.cpp  </p>
-<hr>
-<h3 id="0-init进程的主要职责"><a href="#0-init进程的主要职责" class="headerlink" title="0 init进程的主要职责"></a>0 init进程的主要职责</h3><ul>
-<li>init如何创建zygote。  </li>
-<li>init的属性服务是如何工作的。</li></ul></div><a class="more" href="/2019/04/10/init进程启动源码分析/#more">阅读更多</a><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2019/04/10/androidstart/">Android开机总体流程</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-04-10</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Android/">Android</a></span><div class="content">
+fra ...</div><a class="more" href="/2019/04/10/Android-O-耗电统计/#more" style="margin-top: 14px">阅读更多</a><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2019/04/10/init进程启动源码分析/">init启动分析</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-04-10</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Android/">Android</a></span><div class="content">Android N平台
+
+涉及源码位置:aosp/system/core/init/init.cppaosp/system/core/rootdir/init.rcaosp/system/core/init/property_service.cpp  
+
+0 init进程的主要职责
+init如何创建 ...</div><a class="more" href="/2019/04/10/init进程启动源码分析/#more" style="margin-top: 14px">阅读更多</a><hr></div><div class="recent-post-item article-container"><a class="article-title" href="/2019/04/10/androidstart/">Android开机总体流程</a><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-04-10</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fa fa-inbox article-meta__icon" aria-hidden="true"></i><a class="article-meta__categories" href="/categories/Android/">Android</a></span><div class="content">
 启动环节
 启动电源以及系统启动当电源按下，引导芯片代码开始从预定义的地方（固化在ROM）开始执行。加载引导程序到RAM，然后执行.  
 引导程序Bootloader引导程序是在Android操作系统开始运行前的一个小程序，它的主要作用是把系统OS拉起来并运行。  
